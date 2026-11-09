@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-[#080B16] text-[#F8FAFC] min-h-screen antialiased selection:bg-[#8B5CF6]/30 selection:text-[#22D3EE];
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  /* Custom subtle dark scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #080B16;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #27324A;
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3B82F6;
+  }
+}
+
+/* Safe area support for iOS / mobile */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 12px);
+}
+
