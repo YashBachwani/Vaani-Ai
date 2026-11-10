@@ -16,8 +16,23 @@ import { LearnLanguagesPage } from './pages/LearnLanguagesPage';
 import { LearnPracticePage } from './pages/LearnPracticePage';
 import { LearnProgressPage } from './pages/LearnProgressPage';
 import { SettingsPage } from './pages/SettingsPage';
+import { DemoPage } from './pages/DemoPage';
+import { Preloader } from './components/Preloader';
 
 export const App: React.FC = () => {
+  const [showInitialPreloader, setShowInitialPreloader] = React.useState(() => {
+    return !sessionStorage.getItem('vaani_welcomed');
+  });
+
+  const handlePreloaderComplete = () => {
+    sessionStorage.setItem('vaani_welcomed', 'true');
+    setShowInitialPreloader(false);
+  };
+
+  if (showInitialPreloader) {
+    return <Preloader onComplete={handlePreloaderComplete} minDurationMs={2200} />;
+  }
+
   return (
     <BrowserRouter>
       <AuthProvider>
@@ -25,6 +40,7 @@ export const App: React.FC = () => {
           <Routes>
             {/* Public Routes */}
             <Route path="/" element={<LandingPage />} />
+            <Route path="/demo" element={<DemoPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
 

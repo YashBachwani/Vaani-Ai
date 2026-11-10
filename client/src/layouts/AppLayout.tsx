@@ -4,19 +4,13 @@ import { useAuth } from '../contexts/AuthContext';
 import { Navbar } from '../components/Navbar';
 import { Sidebar } from '../components/Sidebar';
 import { BottomNav } from '../components/BottomNav';
+import { Preloader } from '../components/Preloader';
 
 export const AppLayout: React.FC = () => {
   const { isAuthenticated, isLoading } = useAuth();
 
   if (isLoading) {
-    return (
-      <div className="min-h-screen bg-[#080B16] flex items-center justify-center">
-        <div className="flex flex-col items-center gap-4">
-          <div className="w-12 h-12 rounded-full border-2 border-violet-500 border-t-cyan-400 animate-spin" />
-          <p className="text-sm text-slate-400 font-medium tracking-wide">Initializing VAANI AI...</p>
-        </div>
-      </div>
-    );
+    return <Preloader />;
   }
 
   if (!isAuthenticated) {

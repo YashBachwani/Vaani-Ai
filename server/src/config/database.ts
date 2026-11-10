@@ -81,15 +81,18 @@ export async function connectDatabase(): Promise<typeof mongoose> {
         return mongoose;
       } catch (retryErr: any) {
         console.warn(`[Database] Local mongod retry failed: ${retryErr.message}`);
+        if (mongodProcess) {
+          try { mongodProcess.kill(); } catch {}
+          mongodProcess = null;
+        }
       }
     }
 
-    // Fallback: MongoMemoryServer using existing system binary
+    // Fallback: MongoMemoryServer using ephemeral instance
     try {
-      console.log('[Database] Initializing MongoMemoryServer with local system binary...');
+      console.log('[Database] Initializing MongoMemoryServer fallback...');
       const { MongoMemoryServer } = await import('mongodb-memory-server');
       const mongod = await MongoMemoryServer.create({
-        instance: { dbPath: LOCAL_DB_PATH, port: 27017 },
         binary: {
           systemBinary: fs.existsSync(LOCAL_MONGOD_PATH) ? LOCAL_MONGOD_PATH : undefined
         }
@@ -97,7 +100,7 @@ export async function connectDatabase(): Promise<typeof mongoose> {
       const uri = mongod.getUri();
       await mongoose.connect(uri);
       isConnected = true;
-      console.log('[Database] Connected to embedded MongoDB successfully.');
+      console.log('[Database] Connected to embedded MongoDB successfully at', uri);
       return mongoose;
     } catch (fallbackError: any) {
       console.error('[Database] Failed to establish database connection:', fallbackError);

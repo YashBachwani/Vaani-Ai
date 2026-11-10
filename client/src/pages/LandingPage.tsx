@@ -81,6 +81,13 @@ export const LandingPage: React.FC = () => {
                 <span>Get Started Free</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
+              <Link
+                to="/demo"
+                className="w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 font-semibold transition-colors flex items-center justify-center gap-2 shadow-glow-cyan"
+              >
+                <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+                <span>Watch 2-Min Demo</span>
+              </Link>
               <a
                 href="#showcase"
                 className="w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-[#151D32] hover:bg-[#1B2540] border border-[#27324A] text-slate-200 font-semibold transition-colors flex items-center justify-center gap-2"

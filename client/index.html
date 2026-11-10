@@ -11,7 +11,75 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   </head>
   <body class="bg-[#080B16] text-[#F8FAFC] min-h-screen antialiased selection:bg-[#8B5CF6]/30 selection:text-[#22D3EE]">
-    <div id="root"></div>
+    <div id="root">
+      <!-- Instant Zero-Delay Fallback Preloader (Active while JS bundle loads) -->
+      <div style="position:fixed;inset:0;background-color:#080B16;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Plus Jakarta Sans',Inter,sans-serif;z-index:9999;color:#F8FAFC;overflow:hidden;">
+        <style>
+          @keyframes vaaniPulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; box-shadow: 0 0 45px rgba(139, 92, 246, 0.45); }
+            50% { transform: scale(1.08); opacity: 1; box-shadow: 0 0 75px rgba(34, 211, 238, 0.7); }
+          }
+          @keyframes vaaniRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+          }
+          @keyframes vaaniWave {
+            0%, 100% { height: 6px; opacity: 0.4; }
+            50% { height: 26px; opacity: 1; }
+          }
+          .vaani-glow-orb {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #8B5CF6, #3B82F6, #22D3EE);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: vaaniPulse 2.4s ease-in-out infinite;
+          }
+          .vaani-ring {
+            position: absolute;
+            inset: -14px;
+            border-radius: 50%;
+            border: 2px dashed rgba(34, 211, 238, 0.35);
+            animation: vaaniRotate 10s linear infinite;
+          }
+          .vaani-bar {
+            width: 3px;
+            background: #22D3EE;
+            border-radius: 9999px;
+            margin: 0 2px;
+            display: inline-block;
+          }
+        </style>
+        <div style="position:relative;margin-bottom:28px;">
+          <div class="vaani-glow-orb">
+            <div class="vaani-ring"></div>
+            <div style="width:76px;height:76px;background:#080B16;border-radius:50%;display:flex;align-items:center;justify-content:center;">
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#22D3EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                <line x1="12" x2="12" y1="19" y2="22"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div style="font-size:24px;font-weight:700;letter-spacing:0.12em;margin-bottom:6px;background:linear-gradient(to right,#8B5CF6,#22D3EE);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">
+          VAANI AI
+        </div>
+        <div style="font-size:12px;color:#94A3B8;letter-spacing:0.05em;margin-bottom:20px;">
+          Initializing Neural Voice Engine...
+        </div>
+        <div style="display:flex;align-items:center;height:28px;">
+          <span class="vaani-bar" style="animation: vaaniWave 1.1s ease-in-out infinite 0.1s;"></span>
+          <span class="vaani-bar" style="animation: vaaniWave 1.1s ease-in-out infinite 0.25s;"></span>
+          <span class="vaani-bar" style="animation: vaaniWave 1.1s ease-in-out infinite 0.4s;"></span>
+          <span class="vaani-bar" style="animation: vaaniWave 1.1s ease-in-out infinite 0.15s;"></span>
+          <span class="vaani-bar" style="animation: vaaniWave 1.1s ease-in-out infinite 0.3s;"></span>
+        </div>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

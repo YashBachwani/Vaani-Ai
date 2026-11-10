@@ -46,7 +46,11 @@ export const Navbar: React.FC = () => {
 
         {/* Desktop Navigation Links */}
         {isPublicPage ? (
-          <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+          <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-slate-300">
+            <Link to="/demo" className="text-cyan-400 hover:text-cyan-300 font-semibold flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30">
+              <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+              <span>2-Min Demo</span>
+            </Link>
             <a href="#features" className="hover:text-cyan-400 transition-colors">Features</a>
             <a href="#showcase" className="hover:text-cyan-400 transition-colors">Products</a>
             <a href="#how-it-works" className="hover:text-cyan-400 transition-colors">How It Works</a>
